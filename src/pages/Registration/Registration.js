@@ -64,7 +64,7 @@ const Registration = () => {
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
                 
-                        <input className='btn bg-[#795548] hover:bg-[#512d1f] w-full mt-5' value='Signup' type="submit" />
+                        <input className='btn bg-[#795548] hover:bg-[#512d1f] w-full mt-5' value='Registration' type="submit" />
                         {
                             signupError && <p className='text-red-600'>{signupError}</p>
                         }
