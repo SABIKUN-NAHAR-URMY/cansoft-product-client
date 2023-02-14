@@ -11,10 +11,14 @@ const ProductList = () => {
 
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Job</th>
-              <th>Favorite Color</th>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Rating</th>
+              <th>Stock</th>
+              <th>Category</th>
+              <th>Thumbnail</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

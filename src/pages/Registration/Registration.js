@@ -1,15 +1,39 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Registration.css';
 
 const Registration = () => {
     const [signupError, setSignupError] = useState('');
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const navigate = useNavigate();
 
     const handelSignUp = data => {
         console.log(data);
         setSignupError('');
+        const users = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            phone: data.phone,
+            password: data.password,
+            userName: data.email
+        }
+
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(users)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // localStorage.setItem('token', data.token);
+                console.log(data);
+                navigate('/productList');
+            })
+            .catch(error => console.error(error))
     }
 
     return (
@@ -63,7 +87,7 @@ const Registration = () => {
                                     })} className="input input-bordered w-full" />
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
-                
+
                         <input className='btn bg-[#795548] hover:bg-[#512d1f] w-full mt-5' value='Registration' type="submit" />
                         {
                             signupError && <p className='text-red-600'>{signupError}</p>
@@ -71,9 +95,9 @@ const Registration = () => {
                     </form>
                     <p className='text-sm text-center'>Already have an account? <Link className='text-[#41281f] font-bold' to='/login'>Please Login</Link></p>
                     <div className="divider">OR</div>
-                    <button 
-                    className='btn btn-outline hover:bg-[#795548] w-full '>
-                    CONTINUE WITH GOOGLE</button>
+                    <button
+                        className='btn btn-outline hover:bg-[#795548] w-full '>
+                        CONTINUE WITH GOOGLE</button>
                 </div>
 
             </div>
