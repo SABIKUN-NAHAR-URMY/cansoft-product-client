@@ -20,7 +20,7 @@ const Registration = () => {
             userName: data.email
         }
 
-        fetch('http://localhost:5000/users', {
+        fetch('http://localhost:5000/signup', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -31,7 +31,12 @@ const Registration = () => {
             .then(data => {
                 // localStorage.setItem('token', data.token);
                 console.log(data);
-                navigate('/productList');
+                if(data.acknowledged){
+                    navigate('/productList');
+                }
+                else {
+                    alert('Already Sign Up please Login!');
+                }
             })
             .catch(error => console.error(error))
     }

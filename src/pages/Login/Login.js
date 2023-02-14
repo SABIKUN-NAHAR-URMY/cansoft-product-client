@@ -1,15 +1,42 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [signupError, setSignupError] = useState('');
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const handelLogin = data => {
         console.log(data);
         setSignupError('');
+
+        const users = {
+            email: data.email,
+            password: data.password,
+        }
+
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(users)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // localStorage.setItem('token', data.token);
+                console.log(data);
+                if(data.acknowledged){
+                    navigate('/productList');
+                }
+                else {
+                    alert('Email or Password Error!');
+                }
+            })
+            .catch(error => console.error(error))
     }
+
     return (
         <div className='grid grid-cols-2 gap-0'>
             <div className='bgOverlay flex justify-center items-center'>
@@ -50,7 +77,7 @@ const Login = () => {
                             signupError && <p className='text-red-600'>{signupError}</p>
                         }
                     </form>
-                    <p className='text-sm text-center'>Are you New? <Link className='text-[#41281f] font-bold' to='/signup'>Create New Account</Link></p>
+                    <p className='text-sm text-center'>Are you New? <Link className='text-[#41281f] font-bold' to='/'>Create New Account</Link></p>
                     <div className="divider">OR</div>
                     <button 
                     className='btn btn-outline hover:bg-[#795548] w-full '>
