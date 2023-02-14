@@ -42,6 +42,8 @@ const Login = () => {
                                     })} className="input input-bordered w-full" />
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
+
+                        <p className='text-left'>Forget Password?</p>
                 
                         <input className='btn bg-[#795548] hover:bg-[#512d1f] w-full mt-5' value='Login' type="submit" />
                         {
