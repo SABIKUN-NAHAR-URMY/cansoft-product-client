@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:5000/products')
       .then(res => res.json())
       .then(data => setProducts(data))
   }, [])
+
+  const handelEdit = id => {
+    navigate(`/editProduct/${id}`);
+  }
 
   return (
     <div>
@@ -36,7 +42,7 @@ const ProductList = () => {
 
             {
               products.map(product => <tr key={product._id}>
-                <th>{product.id}</th>
+                <th>{product.Id}</th>
                 <td>{product.title}</td>
                 <td>{product.price}</td>
                 <td>{product.rating}</td>
@@ -47,7 +53,7 @@ const ProductList = () => {
                     <img src={product.thumbnail} alt="Avatar Tailwind CSS Component" />
                   </div>
                 </div></td>
-                <td className='btn bg-[#795548]'>Edit</td>
+                <td><button onClick={() => handelEdit(product._id)} className='btn bg-[#795548]'>Edit</button></td>
               </tr>)
             }
 

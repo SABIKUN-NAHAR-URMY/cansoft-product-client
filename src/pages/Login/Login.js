@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const{createUser} = useContext(AuthContext);
+
     const navigate = useNavigate();
     const [signupError, setSignupError] = useState('');
     const { register, formState: { errors }, handleSubmit } = useForm();
 
     const handelLogin = data => {
-        console.log(data);
         setSignupError('');
 
         const users = {
@@ -25,8 +27,8 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // localStorage.setItem('token', data.token);
-                console.log(data);
+                createUser(data?.userInfo[0]);
+                localStorage.setItem('userInfo',  JSON.stringify(data?.userInfo[0]));
                 if(data.acknowledged){
                     navigate('/productList');
                 }

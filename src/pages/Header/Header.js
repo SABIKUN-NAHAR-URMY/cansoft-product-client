@@ -1,9 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
 import logo from '../images/Cansoft_logo.jpg';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+  const { logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handelLogOut = () =>{
+    logOut();
+    navigate('/login');
+  }
+
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -20,9 +29,8 @@ const Header = () => {
             </div>
           </label>
           <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-            <li><Link>Profile</Link></li>
-            <li><Link>Settings</Link></li>
-            <li><Link>Logout</Link></li>
+            <li><Link to='/userProfile'>Profile</Link></li>
+            <li><button onClick={handelLogOut}>Logout</button></li>
           </ul>
         </div>
       </div>
