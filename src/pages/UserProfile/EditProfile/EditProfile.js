@@ -5,7 +5,6 @@ const EditProfile = () => {
     const userData = useLoaderData();
     console.log(userData);
     const navigate = useNavigate();
-    // useTitle('EditReview');
 
     const handelEditProfile = event => {
         event.preventDefault();
@@ -29,7 +28,7 @@ const EditProfile = () => {
         })
             .then(data => {
                 console.log(data);
-                if(data.statusText === 'OK'){
+                if (data.statusText === 'OK') {
                     const editData = {
                         _id: userData._id,
                         firstName: firstName,
@@ -37,7 +36,7 @@ const EditProfile = () => {
                         phone: phone,
                         email: userData.email
                     }
-                    localStorage.setItem('userInfo',  JSON.stringify(editData));
+                    localStorage.setItem('userInfo', JSON.stringify(editData));
                     console.log()
                 }
                 alert("Profile Updated!");
@@ -47,14 +46,21 @@ const EditProfile = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handelEditProfile} className='m-10 '>
-                <input type="text" name='firstName' defaultValue={userData.firstName} placeholder='First Name' className="input input-bordered w-full mb-8" />
-                <input type="text" name='lastName' defaultValue={userData.lastName} placeholder='Last Name' className="input input-bordered w-full mb-8" />
-                <input type="text" name='phone' defaultValue={userData.phone} placeholder='Phone' className="input input-bordered w-full mb-8" />
-                <input type="text" name='email' disabled defaultValue={userData.email} placeholder='Email' className="input input-bordered w-full mb-8" />
-                <input className='btn btn-active btn-ghost w-full' type="submit" value="Update" />
-            </form>
+        <div className='bg-[#764432a5] w-full h-screen'>
+            <div className='lg:w-1/2 pt-20 mx-auto border shadow-xl rounded-lg p-5 m-10'>
+                <form onSubmit={handelEditProfile} className='m-10 '>
+                    <input data-aos="fade-up"
+                        data-aos-duration="1000" type="text" name='firstName' defaultValue={userData.firstName} placeholder='First Name' className="input input-bordered w-full mb-8" />
+                    <input data-aos="fade-up"
+     data-aos-duration="1000" type="text" name='lastName' defaultValue={userData.lastName} placeholder='Last Name' className="input input-bordered w-full mb-8" />
+                    <input data-aos="fade-up"
+     data-aos-duration="1000" type="text" name='phone' defaultValue={userData.phone} placeholder='Phone' className="input input-bordered w-full mb-8" />
+                    <input data-aos="fade-up"
+     data-aos-duration="1000" type="text" name='email' disabled defaultValue={userData.email} placeholder='Email' className="input input-bordered w-full mb-8" />
+                    <input data-aos="fade-up"
+     data-aos-duration="1000" className='btn bg-[#795548] w-full' type="submit" value="Update" />
+                </form>
+            </div>
         </div>
     );
 };

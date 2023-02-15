@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const { createUser, resetPassword, setLoading } = useContext(AuthContext);
+    const { createUser} = useContext(AuthContext);
 
     const navigate = useNavigate();
     const [signupError, setSignupError] = useState('');
@@ -31,7 +31,7 @@ const Login = () => {
                     navigate('/productList');
                     createUser(data?.userInfo[0]);
                     localStorage.setItem('userInfo', JSON.stringify(data?.userInfo[0]));
-                    setLoading(false);
+                    // setLoading(false);
                 }
                 else {
                     alert('Email or Password Error!');
@@ -41,17 +41,21 @@ const Login = () => {
     }
 
     return (
-        <div className='grid grid-cols-2 gap-0'>
+        <div className='lg:grid grid-cols-2 gap-0'>
             <div className='bgOverlay flex justify-center items-center'>
                 <div className='text-left mx-10'>
-                    <p className='text-7xl font-bold mb-10'>Welcome back!!</p>
-                    <p className='text-3xl'>We are glad to see you again! Get access to show your Products List.</p>
+                    <p className='text-7xl font-bold mb-10' data-aos="fade-up"
+     data-aos-duration="1000">Welcome back!!</p>
+                    <p className='text-3xl' data-aos="fade-up"
+     data-aos-duration="1000">We are glad to see you again! Get access to show your Products List.</p>
                 </div>
             </div>
             <div className='flex items-center justify-center'>
                 <div className='w-2/3'>
-                    <p className='text-4xl text-left mb-4 font-bold'>Log In</p>
-                    <form onSubmit={handleSubmit(handelLogin)}>
+                    <p className='text-4xl text-left mb-4 font-bold' data-aos="fade-up"
+     data-aos-duration="1000">Log In</p>
+                    <form data-aos="fade-up"
+     data-aos-duration="1000" onSubmit={handleSubmit(handelLogin)}>
 
                         <div className="form-control w-full">
                             <label className="label"><span className="label-text text-xl">Email Address</span></label>
@@ -80,11 +84,8 @@ const Login = () => {
                             signupError && <p className='text-red-600'>{signupError}</p>
                         }
                     </form>
-                    <p className='text-sm text-center'>Are you New? <Link className='text-[#41281f] font-bold' to='/'>Create New Account</Link></p>
-                    <div className="divider">OR</div>
-                    <button
-                        className='btn btn-outline hover:bg-[#795548] w-full '>
-                        CONTINUE WITH GOOGLE</button>
+                    <p  className='text-sm text-center my-6'>Are you New? <Link className='text-[#41281f] font-bold' to='/'>Create New Account</Link></p>
+                    
                 </div>
 
             </div>

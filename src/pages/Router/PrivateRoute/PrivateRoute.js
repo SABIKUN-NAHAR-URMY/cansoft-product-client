@@ -4,8 +4,10 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const PrivateRoute = ({children}) => {
     const userData = (JSON.parse(localStorage.getItem('userInfo')));
-    const {  loading } = useContext(AuthContext);
+    const { setLoading, loading } = useContext(AuthContext);
     let location = useLocation();
+    
+    userData && setLoading(false);
 
     if(loading)
     {

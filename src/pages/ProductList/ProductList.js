@@ -18,7 +18,8 @@ const ProductList = () => {
   return (
     <div>
       <div className='bg-[#cb937f] text-white p-28'>
-        <p className='text-4xl font-bold'>All Product List</p>
+        <p className='text-4xl font-bold' data-aos="fade-up"
+     data-aos-duration="1000">All Product List</p>
       </div>
       <div className="overflow-x-auto my-10 border-2 border-orange-700 shadow-2xl shadow-orange-100">
         {

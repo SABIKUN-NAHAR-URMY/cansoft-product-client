@@ -14,7 +14,7 @@ const Header = () => {
   }
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-[#cb937f] fixed top-0 z-30">
       <div className="flex-1">
         <img className='w-40' src={logo} alt="" />
       </div>
@@ -28,7 +28,7 @@ const Header = () => {
               <FaUser className="w-8 h-8"></FaUser>
             </div>
           </label>
-          <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+          <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-[#cb937f] border border-white text-white rounded-box w-52">
             <li><Link to='/userProfile'>Profile</Link></li>
             <li><button onClick={handelLogOut}>Logout</button></li>
           </ul>

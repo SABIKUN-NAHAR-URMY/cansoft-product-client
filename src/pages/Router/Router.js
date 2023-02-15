@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Main></Main>,
+        element: <PrivateRoute><Main></Main></PrivateRoute>,
         children: [
             {
                 path: '/productList',
@@ -37,16 +37,16 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/editProduct/:id',
-                element: <ProductEdit></ProductEdit>,
+                element: <PrivateRoute><ProductEdit></ProductEdit></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/editProduct/${params.id}`) 
             },
             {
                 path: '/userProfile',
-                element: <UserProfile></UserProfile>
+                element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>
             },
             {
                 path: '/editUserProfile/:id',
-                element: <EditProfile></EditProfile>,
+                element: <PrivateRoute><EditProfile></EditProfile></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/editUserProfile/${params.id}`)
             }
 

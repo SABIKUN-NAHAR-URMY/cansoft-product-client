@@ -32,7 +32,8 @@ const Registration = () => {
                 // localStorage.setItem('token', data.token);
                 console.log(data);
                 if(data.acknowledged){
-                    navigate('/productList');
+                    alert('User Sign Up done!');
+                    navigate('/login');
                 }
                 else {
                     alert('Already Sign Up please Login!');
@@ -42,17 +43,21 @@ const Registration = () => {
     }
 
     return (
-        <div className='grid grid-cols-2 gap-0'>
+        <div className='lg:grid grid-cols-2 gap-0'>
             <div className='bgOverlay flex justify-center items-center'>
                 <div className='text-left mx-10'>
-                    <p className='text-7xl font-bold mb-10'>Looks like you're new here!</p>
-                    <p className='text-3xl'>Join with us! Sign up with your details to get started!</p>
+                    <p className='text-7xl font-bold mb-10' data-aos="fade-up"
+     data-aos-duration="1000">Looks like you're new here!</p>
+                    <p className='text-3xl' data-aos="fade-up"
+     data-aos-duration="1000">Join with us! Sign up with your details to get started!</p>
                 </div>
             </div>
             <div className='flex items-center justify-center'>
                 <div className='w-2/3'>
-                    <p className='text-4xl text-left mb-4 font-bold'>Sing Up</p>
-                    <form onSubmit={handleSubmit(handelSignUp)}>
+                    <p className='text-4xl text-left mb-4 font-bold' data-aos="fade-up"
+     data-aos-duration="1000">Sing Up</p>
+                    <form data-aos="fade-up"
+     data-aos-duration="1000"  onSubmit={handleSubmit(handelSignUp)}>
                         <div className="form-control w-full">
                             <label className="label"><span className="label-text text-xl">First Name</span></label>
                             <input placeholder='First Name' type="text"
@@ -98,11 +103,8 @@ const Registration = () => {
                             signupError && <p className='text-red-600'>{signupError}</p>
                         }
                     </form>
-                    <p className='text-sm text-center'>Already have an account? <Link className='text-[#41281f] font-bold' to='/login'>Please Login</Link></p>
-                    <div className="divider">OR</div>
-                    <button
-                        className='btn btn-outline hover:bg-[#795548] w-full '>
-                        CONTINUE WITH GOOGLE</button>
+                    <p className='text-sm text-center my-6'>Already have an account? <Link className='text-[#41281f] font-bold' to='/login'>Please Login</Link></p>
+                    
                 </div>
 
             </div>
