@@ -1,8 +1,13 @@
 import React from 'react';
 import { FaUser } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
     const userData = (JSON.parse(localStorage.getItem('userInfo')));
+    const navigate = useNavigate();
+    const handelEditProfile = id =>{
+        navigate(`/editUserProfile/${id}`)
+    }
     return (
         <div>
             <div className='h-64 relative bg-gradient-to-r from-[#b67962] to-[#c9b1a9] mb-32'>
@@ -30,7 +35,7 @@ const UserProfile = () => {
                         <p>Phone: {userData.phone}</p>
                     </div>
                     <div className="card-actions justify-end">
-                        <button className="btn bg-[#795548]">Edit</button>
+                        <button onClick={()=>handelEditProfile(userData._id)} className="btn bg-[#795548]">Edit</button>
                     </div>
                 </div>
             </div>

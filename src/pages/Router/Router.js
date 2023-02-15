@@ -4,6 +4,7 @@ import Main from "../Main/Main";
 import ProductEdit from "../ProductList/ProductEdit/ProductEdit";
 import ProductList from "../ProductList/ProductList";
 import Registration from "../Registration/Registration";
+import EditProfile from "../UserProfile/EditProfile/EditProfile";
 import UserProfile from "../UserProfile/UserProfile";
 
 export const router = createBrowserRouter([
@@ -32,6 +33,11 @@ export const router = createBrowserRouter([
                 path: '/userProfile',
                 element: <UserProfile></UserProfile>
             },
+            {
+                path: '/editUserProfile/:id',
+                element: <EditProfile></EditProfile>,
+                loader: ({params}) => fetch(`http://localhost:5000/editUserProfile/${params.id}`)
+            }
 
         ]
     },
