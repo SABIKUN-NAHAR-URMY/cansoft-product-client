@@ -18,7 +18,7 @@ const Login = () => {
             password: data.password,
         }
 
-        fetch('http://localhost:5000/login', {
+        fetch('https://cansoft-product-server.vercel.app/login', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

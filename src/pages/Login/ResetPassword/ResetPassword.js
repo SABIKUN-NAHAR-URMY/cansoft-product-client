@@ -16,9 +16,7 @@ const ResetPassword = () => {
             password: data.password,
         }
 
-        console.log(userPass);
-
-        fetch(`http://localhost:5000/resetPass/${resetPass._id}`, {
+        fetch(`https://cansoft-product-server.vercel.app/resetPass/${resetPass._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -26,7 +24,6 @@ const ResetPassword = () => {
             body: JSON.stringify(userPass)
         })
             .then(data => {
-                console.log(data);
                 alert("Password Updated!");
                 navigate('/login');
             })

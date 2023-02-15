@@ -18,7 +18,7 @@ const EditProfile = () => {
             phone
         }
 
-        fetch(`http://localhost:5000/editUserProfile/${userData._id}`, {
+        fetch(`https://cansoft-product-server.vercel.app/editUserProfile/${userData._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'
@@ -26,7 +26,8 @@ const EditProfile = () => {
             body: JSON.stringify(editProfile)
         })
             .then(data => {
-                if (data.statusText === 'OK') {
+                console.log(data);
+                if (data.status === 200) {
                     const editData = {
                         _id: userData._id,
                         firstName: firstName,

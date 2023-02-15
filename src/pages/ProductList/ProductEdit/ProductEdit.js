@@ -22,7 +22,7 @@ const ProductEdit = () => {
             stock
         }
 
-        fetch(`http://localhost:5000/editProduct/${data._id}`, {
+        fetch(`https://cansoft-product-server.vercel.app/editProduct/${data._id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json'

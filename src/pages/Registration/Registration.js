@@ -19,7 +19,7 @@ const Registration = () => {
             userName: data.email
         }
 
-        fetch('http://localhost:5000/signup', {
+        fetch('https://cansoft-product-server.vercel.app/signup', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

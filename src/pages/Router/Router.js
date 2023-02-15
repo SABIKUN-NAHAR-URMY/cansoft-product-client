@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             {
                 path: '/editProduct/:id',
                 element: <PrivateRoute><ProductEdit></ProductEdit></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/editProduct/${params.id}`) 
+                loader: ({params}) => fetch(`https://cansoft-product-server.vercel.app/editProduct/${params.id}`) 
             },
             {
                 path: '/userProfile',
@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: '/editUserProfile/:id',
                 element: <PrivateRoute><EditProfile></EditProfile></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/editUserProfile/${params.id}`)
+                loader: ({params}) => fetch(`https://cansoft-product-server.vercel.app/editUserProfile/${params.id}`)
             }
 
         ]

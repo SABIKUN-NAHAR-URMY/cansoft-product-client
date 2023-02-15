@@ -15,7 +15,7 @@ const ForgetPass = () => {
             email: email,
         }
 
-        fetch('http://localhost:5000/forgot', {
+        fetch('https://cansoft-product-server.vercel.app/forgot', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -24,7 +24,6 @@ const ForgetPass = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if(!data.acknowledged){
                     alert("User with this email does not exist")
                 }
