@@ -3,7 +3,6 @@ import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
     const userData = useLoaderData();
-    console.log(userData);
     const navigate = useNavigate();
 
     const handelEditProfile = event => {
@@ -27,7 +26,6 @@ const EditProfile = () => {
             body: JSON.stringify(editProfile)
         })
             .then(data => {
-                console.log(data);
                 if (data.statusText === 'OK') {
                     const editData = {
                         _id: userData._id,
@@ -37,7 +35,6 @@ const EditProfile = () => {
                         email: userData.email
                     }
                     localStorage.setItem('userInfo', JSON.stringify(editData));
-                    console.log()
                 }
                 alert("Profile Updated!");
                 navigate('/userProfile');

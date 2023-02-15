@@ -31,7 +31,6 @@ const Login = () => {
                     navigate('/productList');
                     createUser(data?.userInfo[0]);
                     localStorage.setItem('userInfo', JSON.stringify(data?.userInfo[0]));
-                    // setLoading(false);
                 }
                 else {
                     alert('Email or Password Error!');

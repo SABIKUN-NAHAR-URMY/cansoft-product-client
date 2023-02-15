@@ -9,7 +9,6 @@ const Registration = () => {
     const navigate = useNavigate();
 
     const handelSignUp = data => {
-        console.log(data);
         setSignupError('');
         const users = {
             firstName: data.firstName,
@@ -29,8 +28,6 @@ const Registration = () => {
         })
             .then(res => res.json())
             .then(data => {
-                // localStorage.setItem('token', data.token);
-                console.log(data);
                 if(data.acknowledged){
                     alert('User Sign Up done!');
                     navigate('/login');

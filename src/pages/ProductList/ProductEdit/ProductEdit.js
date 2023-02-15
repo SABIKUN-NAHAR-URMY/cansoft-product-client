@@ -30,7 +30,6 @@ const ProductEdit = () => {
             body: JSON.stringify(editProduct)
         })
             .then(data => {
-                console.log(data);
                 alert("Product Updated!");
                 navigate('/productList');
             })
