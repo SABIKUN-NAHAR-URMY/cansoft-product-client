@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-    const{createUser} = useContext(AuthContext);
+    const { createUser, resetPassword, setLoading } = useContext(AuthContext);
 
     const navigate = useNavigate();
     const [signupError, setSignupError] = useState('');
@@ -27,10 +27,11 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                createUser(data?.userInfo[0]);
-                localStorage.setItem('userInfo',  JSON.stringify(data?.userInfo[0]));
-                if(data.acknowledged){
+                if (data.acknowledged) {
                     navigate('/productList');
+                    createUser(data?.userInfo[0]);
+                    localStorage.setItem('userInfo', JSON.stringify(data?.userInfo[0]));
+                    setLoading(false);
                 }
                 else {
                     alert('Email or Password Error!');
@@ -51,7 +52,7 @@ const Login = () => {
                 <div className='w-2/3'>
                     <p className='text-4xl text-left mb-4 font-bold'>Log In</p>
                     <form onSubmit={handleSubmit(handelLogin)}>
-                       
+
                         <div className="form-control w-full">
                             <label className="label"><span className="label-text text-xl">Email Address</span></label>
                             <input placeholder='Email Address' type="email"
@@ -59,7 +60,7 @@ const Login = () => {
                                     { required: "Email Address is required" })} className="input input-bordered w-full" />
                             {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                         </div>
-                        
+
                         <div className="form-control w-full">
                             <label className="label"><span className="label-text text-xl">Password</span></label>
                             <input placeholder='Password' type="password"
@@ -72,8 +73,8 @@ const Login = () => {
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
 
-                        <p className='text-left'>Forget Password?</p>
-                
+                        <Link to='/forgetPass'><p className='text-left'>Forget Password?</p></Link>
+
                         <input className='btn bg-[#795548] hover:bg-[#512d1f] w-full mt-5' value='Login' type="submit" />
                         {
                             signupError && <p className='text-red-600'>{signupError}</p>
@@ -81,9 +82,9 @@ const Login = () => {
                     </form>
                     <p className='text-sm text-center'>Are you New? <Link className='text-[#41281f] font-bold' to='/'>Create New Account</Link></p>
                     <div className="divider">OR</div>
-                    <button 
-                    className='btn btn-outline hover:bg-[#795548] w-full '>
-                    CONTINUE WITH GOOGLE</button>
+                    <button
+                        className='btn btn-outline hover:bg-[#795548] w-full '>
+                        CONTINUE WITH GOOGLE</button>
                 </div>
 
             </div>
